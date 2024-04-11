@@ -1,4 +1,47 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.5.5"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph (old)",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "status-history",
+      "name": "Status history",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -20,14 +63,14 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 3070,
   "graphTooltip": 0,
-  "id": 57,
+  "id": null,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -112,7 +155,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(etcd_mvcc_db_total_size_in_bytes)/3",
@@ -133,7 +176,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -188,7 +231,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -210,7 +253,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -310,7 +353,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "histogram_quantile(0.99, sum(rate(etcd_disk_wal_fsync_duration_seconds_bucket[5m])) by (instance, le))",
@@ -326,7 +369,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -345,7 +388,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -444,7 +487,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "histogram_quantile(0.99, sum(rate(etcd_disk_backend_commit_duration_seconds_bucket[5m])) by (instance, le))",
@@ -459,7 +502,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(histogram_quantile(0.99, sum(rate(etcd_disk_backend_commit_duration_seconds_bucket[5m])) by (instance, le)))",
@@ -475,12 +518,13 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "text",
+            "mode": "continuous-RdYlGr"
           },
           "custom": {
             "axisCenteredZero": false,
@@ -496,7 +540,7 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "linear",
+            "lineInterpolation": "smooth",
             "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
@@ -555,7 +599,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(rate(etcd_server_proposals_failed_total[5m]))",
@@ -570,7 +614,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(etcd_server_proposals_pending)",
@@ -585,7 +629,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(rate(etcd_server_proposals_committed_total[5m]))",
@@ -600,7 +644,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(rate(etcd_server_proposals_applied_total[5m]))",
@@ -622,7 +666,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+        "uid": "${DS_PROMETHEUS}"
       },
       "editable": true,
       "error": false,
@@ -665,7 +709,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(etcd_network_client_grpc_received_bytes_total[5m])",
@@ -718,7 +762,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+        "uid": "${DS_PROMETHEUS}"
       },
       "editable": true,
       "error": false,
@@ -761,7 +805,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(etcd_network_client_grpc_sent_bytes_total[5m])",
@@ -810,7 +854,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -914,7 +958,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "builder",
           "expr": "sum(rate(grpc_server_msg_received_total[5m]))",
@@ -926,7 +970,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "f4495773-24d6-4c28-bb85-3c6b88f5d615"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(rate(grpc_server_msg_sent_total[5m]))",
@@ -979,6 +1023,6 @@
   "timezone": "browser",
   "title": "Etcd",
   "uid": "eaa0b723-d300-410e-bde1-f971aa4368bb",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
